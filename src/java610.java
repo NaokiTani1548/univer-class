@@ -35,6 +35,7 @@ public class java610 {
 					case 0: winHand = 1; loseHand = 2; break;
 					case 1: winHand = 2; loseHand = 0; break;     
 					case 2: winHand = 0; loseHand = 1; break;
+					default: throw new Error();
 				}
 
 				int sameHandCount = 0;
