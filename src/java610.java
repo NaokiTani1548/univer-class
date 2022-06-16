@@ -8,7 +8,7 @@ public class java610 {
 			Random rand = new Random();
 			
 			String[] hands = {"グー","チョキ","パー"};
-			int retry =0; int x; int y; int z;
+			int retry =0;
 			do {
 				System.out.print("コンピュータの手の数");
 				int n = stdIn.nextInt();
@@ -18,7 +18,6 @@ public class java610 {
 				}
 				int user;
 				do {
-					x =0; y=0; z=0;
 					System.out.print("じゃんけんポン\n");
 					for(int i = 0; i < 3 ; i++) {
 						System.out.printf("(%d)%s",i,hands[i]);
@@ -31,38 +30,32 @@ public class java610 {
 				 }System.out.print("あなたがが"+hands[user]);
 				 int judge = 0;
 				
+				int winHand; int loseHand;
 				switch(user) {
-				 case 0: for(int i = 0; i < n ; i++) {
-						   if(comp[i] != 0)   x = x+1;
-					   }if(x == 0) { judge = 0; break;}
-				        for(int j = 0 ; j < n ; j++) {
-				         if(comp[j] == 2) y = y+1;
-				        } if(y == 0) {judge = 2; break;}
-				       for(int l = 0; l < n ; l++) {
-				    	   if(comp[l] == 1) z = z+1; 
-				       }if(z == 0) {judge = 1; break;}
-				         judge = 0; break;
-				 case 1:  for(int i = 0; i < n ; i++) {
-					      if(comp[i] != 1)  x = x+1;
-				       }if(x==0)  { judge=0; break;}
-			           for(int j = 0; j < n ; j++) {
-			    	     if(comp[j] == 0) y = y+1; 
-			           }if(y == 0) { judge = 2; break;}
-			           for(int l = 0; l < n ; l++) {
-			    	     if(comp[l] == 2) z = z+1; 
-			           }if(z == 0) { judge = 1; break;}
-			              judge = 0; break;    
-				 case 2: for(int i = 0; i < n ; i++) {
-					      if(comp[i] != 2)  x = x+1;
-				        }if(x == 0)  { judge = 0; break;}
-			            for(int j = 0; j < n ; j++) {
-			    	      if(comp[j] == 1) y = y+1; 
-			             }if(y == 0) { judge = 2; break;}
-			             for(int l = 0; l < n ; l++) {
-			    	      if(comp[l] == 0) z = z+1; 
-			             }if(z == 0) { judge = 1; break;}
-			                judge = 0; break;
+					case 0: winHand = 1; loseHand = 2; break;
+					case 1: winHand = 2; loseHand = 0; break;     
+					case 2: winHand = 0; loseHand = 1; break;
+					default: throw new Error();
 				}
+
+				int sameHandCount = 0;
+				int winHandCount = 0;
+				int loseHandCount = 0;
+				for (int i = 0; i < n; i++) {
+					if (comp[i] == user) sameHandCount ++;
+				}
+				for (int j = 0 ; j < n; j++) {
+				    if (comp[j] == loseHand) loseHandCount ++;
+				}
+				for (int l = 0; l < n; l++) {
+				    if (comp[l] == winHand) winHandCount ++; 
+				}
+
+				if (sameHandCount == comp.length) judge = 0;
+				else if (winHandCount == 0) judge = 1;
+				else if (loseHandCount == 0) judge = 2;
+				else judge = 0;
+
 				switch(judge) {
 				case 0: System.out.println("\n引き分けです");break;
 				case 1: System.out.println("\nあなたの負けです");break;
