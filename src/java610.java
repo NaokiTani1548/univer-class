@@ -2,82 +2,120 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class java610 {
-
-		public static void main(String[] args) {
-			Scanner stdIn =new Scanner(System.in);
-			Random rand = new Random();
-			
-			String[] hands = {"ƒO[","ƒ`ƒ‡ƒL","ƒp["};
-			int retry =0; int x; int y; int z;
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		Random rand = new Random();
+		
+		String[] hands = {"ã‚°ãƒ¼","ãƒãƒ§ã‚­","ãƒ‘ãƒ¼"};
+		int retry = 0; int x; int y; int z;
+		do {
+			System.out.print("ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ã®æ‰‹ã®æ•°");
+			int n = stdIn.nextInt();
+			int[] comp = new int[n];
+			for (int i = 0; i < n; i++) {
+				comp[i] = rand.nextInt(3);
+			}
+			int user;
 			do {
-				System.out.print("ƒRƒ“ƒsƒ…[ƒ^‚Ìè‚Ì”");
-				int n = stdIn.nextInt();
-				int[]comp = new int[n];
-				for(int i = 0; i < n ; i++) {
-					comp[i] = rand.nextInt(3);
+				x = 0; y = 0; z = 0;
+				System.out.print("ã˜ã‚ƒã‚“ã‘ã‚“ãƒãƒ³\n");
+				for(int i = 0; i < 3 ; i++) {
+					System.out.printf("(%d)%s", i, hands[i]);
 				}
-				int user;
-				do {
-					x =0; y=0; z=0;
-					System.out.print("‚¶‚á‚ñ‚¯‚ñƒ|ƒ“\n");
-					for(int i = 0; i < 3 ; i++) {
-						System.out.printf("(%d)%s",i,hands[i]);
+				System.out.print(":");
+				user = stdIn.nextInt();
+			} while (user < 0 || user > 2);
+			for (int i = 0; i < n; i++) {	
+				System.out.print("com" + i + "ãŒ" + hands[comp[i]] + " ");
+			}
+			System.out.print("ã‚ãªãŸãŒãŒ" + hands[user]);
+			int judge = 0;
+				
+			switch(user) {
+				case 0 :
+					for(int i = 0; i < n ; i++) {
+						if (comp[i] != 0) x = x + 1;
+					}
+					if (x == 0) {
+						judge = 0;
+						break;
+					}
+				    for(int j = 0; j < n; j++) {
+				        if (comp[j] == 2) y = y + 1;
 				    }
-					System.out.print(":");
-				    user=stdIn.nextInt();
-			    }while(user<0||user>2);
-			   for(int i = 0; i < n ; i++) {	
-				  System.out.print("com"+i+"‚ª"+hands[comp[i]]+" ");
-				 }System.out.print("‚ ‚È‚½‚ª‚ª"+hands[user]);
-				 int judge = 0;
-				
-				switch(user) {
-				 case 0: for(int i = 0; i < n ; i++) {
-						   if(comp[i] != 0)   x = x+1;
-					   }if(x == 0) { judge = 0; break;}
-				        for(int j = 0 ; j < n ; j++) {
-				         if(comp[j] == 2) y = y+1;
-				        } if(y == 0) {judge = 2; break;}
-				       for(int l = 0; l < n ; l++) {
-				    	   if(comp[l] == 1) z = z+1; 
-				       }if(z == 0) {judge = 1; break;}
-				         judge = 0; break;
-				 case 1:  for(int i = 0; i < n ; i++) {
-					      if(comp[i] != 1)  x = x+1;
-				       }if(x==0)  { judge=0; break;}
-			           for(int j = 0; j < n ; j++) {
-			    	     if(comp[j] == 0) y = y+1; 
-			           }if(y == 0) { judge = 2; break;}
-			           for(int l = 0; l < n ; l++) {
-			    	     if(comp[l] == 2) z = z+1; 
-			           }if(z == 0) { judge = 1; break;}
-			              judge = 0; break;    
-				 case 2: for(int i = 0; i < n ; i++) {
-					      if(comp[i] != 2)  x = x+1;
-				        }if(x == 0)  { judge = 0; break;}
-			            for(int j = 0; j < n ; j++) {
-			    	      if(comp[j] == 1) y = y+1; 
-			             }if(y == 0) { judge = 2; break;}
-			             for(int l = 0; l < n ; l++) {
-			    	      if(comp[l] == 0) z = z+1; 
-			             }if(z == 0) { judge = 1; break;}
-			                judge = 0; break;
+					if (y == 0) {
+						judge = 2;
+						break;
+					}
+				    for(int l = 0; l < n; l++) {
+				    	if (comp[l] == 1) z = z + 1; 
+				    }
+					if (z == 0) {
+						judge = 1;
+						break;
+					}
+				    judge = 0;
+					break;
+				case 1 :
+					for (int i = 0; i < n; i++) {
+					    if (comp[i] != 1) x = x + 1;
+				    }
+					if (x==0) {
+						judge=0;
+						break;
+					}
+			        for (int j = 0; j < n; j++) {
+			    	    if (comp[j] == 0) y = y + 1; 
+			        }
+					if (y == 0) {
+						judge = 2;
+						break;
+					}
+			        for (int l = 0; l < n; l++) {
+			    	    if (comp[l] == 2) z = z + 1; 
+			        }
+					if (z == 0) {
+						judge = 1;
+						break;
+					}
+			        judge = 0;
+					break;    
+				case 2 :
+					for (int i = 0; i < n; i++) {
+						if (comp[i] != 2) x = x + 1;
+				    }
+					if (x == 0) {
+						judge = 0;
+						break;
+					}
+			        for (int j = 0; j < n; j++) {
+			    	    if (comp[j] == 1) y = y + 1; 
+			        }
+					if (y == 0) {
+						judge = 2;
+						break;
+					}
+			        for (int l = 0; l < n; l++) {
+			    	    if (comp[l] == 0) z = z + 1; 
+			        }
+					if (z == 0) {
+						judge = 1;
+						break;
+					}
+			        judge = 0;
+					break;
 				}
+
 				switch(judge) {
-				case 0: System.out.println("\nˆø‚«•ª‚¯‚Å‚·");break;
-				case 1: System.out.println("\n‚ ‚È‚½‚Ì•‰‚¯‚Å‚·");break;
-				case 2: System.out.println("\n‚ ‚È‚½‚ÌŸ‚¿‚Å‚·");
-				
+					case 0 : System.out.println("\nå¼•ãåˆ†ã‘ã§ã™"); break;
+					case 1 : System.out.println("\nã‚ãªãŸã®è² ã‘ã§ã™"); break;
+					case 2 : System.out.println("\nã‚ãªãŸã®å‹ã¡ã§ã™");
 				}
 				do {
-					System.out.print("‚à‚¤ˆê“xH‚OEEE‚¢‚¢‚¦@‚PEEE‚Í‚¢");
-					retry =stdIn.nextInt();
-				}while(retry != 0 && retry != 1);
+					System.out.print("ã‚‚ã†ä¸€åº¦ï¼Ÿï¼ãƒ»ãƒ»ãƒ»ã„ã„ãˆã€€ï¼‘ãƒ»ãƒ»ãƒ»ã¯ã„");
+					retry = stdIn.nextInt();
+				} while (retry != 0 && retry != 1);
 
-		}while(retry==1);
-			
-  }
+		} while (retry == 1);
+	}
 }
-
-
-
