@@ -1,33 +1,35 @@
 
-public class java6244 {
+class java6244 {
+	String name;
+	String no;
+	long balance;
 
 	public static void main(String[] args) {
-		double[] a = { 1, 5, 6, 8, 10, 13, 14, 17, 24, 31, 35, 39, 44, 45, 48 };
-		int x = 22;
-		int count = 0;
-		int num = 0;
-		int compare = a.length / 2;
-		int comfac = 4;
-		for (int i = 0; i < 6; i++) {
-			if (x < a[compare]) {
-				compare -= comfac;
-			} else if (x > a[compare]) {
-				compare += comfac;
-			} else {
-				count += 1;
-				num = compare;
-
-				break;
-
-			}
-			comfac = comfac / 2;
-		}
-		if (count == 0) {
-			System.out.println("”z—ña‚Ì’†‚É" + x + "‚ÍŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½");
-		} else {
-			System.out.println(x + "‚Í”z—ña‚Ì" + num + "”Ô–Ú‚Ì—v‘f‚Å‚·");
-		}
 
 	}
 
+	Account701(String n, String num, long z) {
+		name = n;
+		no = num;
+		balance = z;
+	}
+
+	void setName(String x) {
+		name = x;
+
+	}
+}
+
+class AccountTester {
+	public static void main(String[] args) {
+
+		java6224 tanaka = new Account701("è¶³ç«‹å¹¸ä¸€", "123456", 1000);
+
+		tanaka.setName("ç”°ä¸­å¹¸ä¸€");
+
+		System.out.println("å£åº§");
+		System.out.println("å£åº§åç¾©" + tanaka.name);
+		System.out.println("å£åº§ç•ªå·" + tanaka.no);
+		System.out.println("é é‡‘æ®‹é«˜" + tanaka.balance);
+	}
 }
